@@ -6,17 +6,17 @@ import { useRouter } from "next/navigation";
 import useConversation from "../../hooks/useConversation";
 import clsx from "clsx";
 import { MdOutlineGroupAdd } from "react-icons/md";
-import ConvesationBox from "./ConvesationBox";
+import ConversationBox from "./ConversationBox";
 
 interface ConvesationListProps {
   initialItems: FullConversationType[];
 }
 
-const ConvesationList: React.FC<ConvesationListProps> = ({ initialItems }) => {
+const ConversationList: React.FC<ConvesationListProps> = ({ initialItems }) => {
   const [items, setItems] = useState(initialItems);
   const router = useRouter();
 
-  const { convesationId, isOpen } = useConversation();
+  const { conversationId, isOpen } = useConversation();
   return (
     <aside
       className={clsx(
@@ -59,10 +59,10 @@ const ConvesationList: React.FC<ConvesationListProps> = ({ initialItems }) => {
           </div>
         </div>
         {items.map((item) => (
-          <ConvesationBox
+          <ConversationBox
             key={items.id}
             data={item}
-            selected={convesationId === items.id}
+            selected={conversationId === items.id}
           />
         ))}
       </div>
@@ -70,4 +70,4 @@ const ConvesationList: React.FC<ConvesationListProps> = ({ initialItems }) => {
   );
 };
 
-export default ConvesationList;
+export default ConversationList;
