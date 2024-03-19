@@ -1,17 +1,25 @@
-import getConvesations from "../actions/getConvesations";
+import getConversations from "../actions/getConversations";
+import getUsers from "../actions/getUsers";
 import Sidebar from "../components/sidebar/Sidebar";
-import ConvesationList from "./components/ConvesationList";
+import ConversationList from "./components/ConversationList";
 
-export default async function ConvesationsLayout({
-  children,
+export default async function ConversationsLayout({
+  children
 }: {
-  children: React.ReactNode;
+  children: React.ReactNode,
 }) {
-  const convesations = await getConvesations();
+  const conversations = await getConversations();
+  const users = await getUsers();
+
   return (
+    // @ts-expect-error Server Component
     <Sidebar>
       <div className="h-full">
-        <ConvesationList initialItems={convesations} />
+        <ConversationList 
+          users={users} 
+          title="Messages" 
+          initialItems={conversations}
+        />
         {children}
       </div>
     </Sidebar>
